@@ -1,2 +1,2 @@
 # dimka-web_prog
-Some web experiments with Angular, Spring Boot and govnocode.
+WEB-CLIENT: Some web experiments with Angular, Spring Boot and govnocode.
