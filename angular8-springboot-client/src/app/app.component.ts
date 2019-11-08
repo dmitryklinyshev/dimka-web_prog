@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { TokenStorageService } from './auth/token-storage.service';
 
 
 @Component({
@@ -10,11 +11,28 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
 })
 export class AppComponent implements OnInit {
   title = 'HI-TECH Admin panel';
+  private roles: string[];
+  private authority: string;
 
   constructor(private http: HttpClient,
-    private ngxService: NgxUiLoaderService) { }
+    private ngxService: NgxUiLoaderService,private tokenStorage: TokenStorageService) { }
 
     ngOnInit() {
+      if (this.tokenStorage.getToken()) {
+        this.roles = this.tokenStorage.getAuthorities();
+        this.roles.every(role => {
+          if (role === 'ROLE_ADMIN') {
+            this.authority = 'admin';
+            return false;
+          } else if (role === 'ROLE_PM') {
+            this.authority = 'pm';
+            return false;
+          }
+          this.authority = 'user';
+          return true;
+        });
+      }
+      
       this.ngxService.start(); // start foreground spinner of the master loader with 'default' taskId
       // Stop the foreground loading after 5s
       setTimeout(() => {
