@@ -21,7 +21,7 @@
     "@angular/router": "~8.0.0",
     "angular-epic-spinners": "^2.0.0",
     "bootstrap": "^4.3.1",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "ng-http-loader": "^6.0.1",
     "ngx-loading": "^8.0.0",
     "ngx-spinner": "^8.0.3",
